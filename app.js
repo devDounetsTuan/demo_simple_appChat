@@ -32,3 +32,11 @@ io.on('connection', (socket) => {
 app.get('/test', (req, res) => {
     Push.create('Hello World!');
 })
+
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .get('/cool', (req, res) => res.send(cool()))
+  .listen(APP_PORT, () => console.log(`Listening on ${ APP_PORT }`))
