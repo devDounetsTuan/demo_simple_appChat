@@ -24,15 +24,7 @@ io.on('connection', (socket) => {
         console.log('chatter : ', message)
         io.emit('chatter', message)
 
-        // Push.create("Hello world!", {
-        //     body: "How's it hangin'?",
-        //     icon: '/icon.png',
-        //     timeout: 4000,
-        //     onClick: function () {
-        //         window.focus();
-        //         this.close();
-        //     }
-        // });       
+        console.log('chatter : ', message)
     })
 })
 
