@@ -1,11 +1,13 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const app = express();
 const Push = require('push.js');
 
-
-const server = app.listen(5000, () => {
-    console.log(`App running on port 5000`);
+const APP_PORT = process.env.PORT || 5000;
+const server = app.listen(APP_PORT, () => {
+    console.log(`App running on port ${APP_PORT}`);
 })
 const io = require('socket.io').listen(server);
 
@@ -33,10 +35,3 @@ app.get('/test', (req, res) => {
     Push.create('Hello World!');
 })
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/cool', (req, res) => res.send(cool()))
-  .listen(APP_PORT, () => console.log(`Listening on ${ APP_PORT }`))
