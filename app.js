@@ -28,6 +28,7 @@ io.on('connection', (socket) => {
         console.log('chatter : ', message)
     })
     console.log('TEST : ', message)
+    console.log('TEST : ', message)
 })
 
 app.get('/test', (req, res) => {
