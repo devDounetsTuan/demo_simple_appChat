@@ -25,13 +25,10 @@ io.on('connection', (socket) => {
     socket.on('chatter', (message) => {
         console.log('chatter : ', message)
         io.emit('chatter', message)
-
         console.log('chatter : ', message)
     })
 })
 
-
 app.get('/test', (req, res) => {
     Push.create('Hello World!');
 })
-
