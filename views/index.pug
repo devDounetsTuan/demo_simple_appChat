@@ -46,22 +46,22 @@ html
 
           socket.emit('chatter', `${name} : ${message}`);
           $('#message').val('');
-
           //- const Push = require('push.js');
-          //- Push.create('Hello World!');
-           Push.create("Hello from Sabe.io!", {
-            body: "Notification "+ name + " : " + message,
-            icon: "/icon.png",
-            timeout: 5000,
-            onClick: function() {
-                console.log(this);
-            }
+          //- Push.create('Hello World!');        
         });
           return false; 
         });
 
         socket.on('chatter', function(message) {
           $('#chat-messages').append($('<li>').text(message));
+          
+            Push.create("Hello from Sabe.io!", {
+            body: "Notification "+ name + " : " + message,
+            icon: "/icon.png",
+            timeout: 5000,
+            onClick: function() {
+                console.log(this);
+            }
         });
         
 
