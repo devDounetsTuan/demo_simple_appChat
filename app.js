@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const Push = require('push.js');
 
 
 const server = app.listen(5000, () => {
@@ -20,15 +21,22 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     console.log('a user connected')
     socket.on('chatter', (message) => {
-      console.log('chatter : ', message)
-      io.emit('chatter', message)
-    })
-  })
+        console.log('chatter : ', message)
+        io.emit('chatter', message)
 
-  express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/cool', (req, res) => res.send(cool()))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+        // Push.create("Hello world!", {
+        //     body: "How's it hangin'?",
+        //     icon: '/icon.png',
+        //     timeout: 4000,
+        //     onClick: function () {
+        //         window.focus();
+        //         this.close();
+        //     }
+        // });       
+    })
+})
+
+
+app.get('/test', (req, res) => {
+    Push.create('Hello World!');
+})
