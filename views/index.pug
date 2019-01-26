@@ -1,3 +1,5 @@
+
+
 doctype html
 html
   head
@@ -6,6 +8,7 @@ html
     link(rel='stylesheet', href='css/main.css')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.5/push.js')
   body
     #chat-app
       #chat.has-text-centered
@@ -43,9 +46,27 @@ html
 
           socket.emit('chatter', `${name} : ${message}`);
           $('#message').val('');
+          //- const Push = require('push.js');
+          //- Push.create('Hello World!');      
           return false; 
         });
 
-        socket.on('chatter', function(message) {
-          $('#chat-messages').append($('<li>').text(message));
-        });
+       socket.on('chatter', function(message) {
+          $('#chat-messages').append($('<li>').text(message));         
+
+          if(name != "Tuan"){
+            Push.create("Hello from Sabe.io!", {
+            body: "Notification "+ name + " : " + message,
+            icon: "/icon.png",
+            timeout: 5000,
+            onClick: function() {
+                console.log(this);
+            }
+          });         
+        }
+       });
+        
+
+        
+
+    
